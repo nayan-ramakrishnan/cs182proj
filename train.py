@@ -186,7 +186,7 @@ def train(a):
         (p, s), losses = jax.lax.scan(body, (p, s), jnp.arange(a.chunk))
         return p, s, losses.mean()
 
-    @jax.jit
+    @partial(jax.jit, static_argnames="has_pool")
     def metrics(p, xs, ys, has_pool):
         f = predict(p, xs, ys)
         r = ridge_preds(xs, ys)
@@ -196,7 +196,11 @@ def train(a):
             d = dmmse_preds(xs, ys, W)
             m.update(dmmse_loss=jnp.mean((d - ys) ** 2), d_dmmse=jnp.mean((f - d) ** 2) / D,
                      d_ridge_dmmse=jnp.mean((r - d) ** 2) / D)
-        return {k: float(v) for k, v in m.items()}
+        return m
+    
+    _metrics = metrics
+    def metrics(p, xs, ys, has_pool):
+        return {k: float(v) for k, v in _metrics(p, xs, ys, has_pool).items()}
 
     def evaluate(p, n):
         ks, kn = jax.random.split(eval_key)
