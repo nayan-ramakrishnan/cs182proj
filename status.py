@@ -14,10 +14,10 @@ for fp in sorted(glob.glob(os.path.join(root, "*_status.json"))):
     name = os.path.basename(fp).replace("_status.json", "")
     print(f"{name:12} done {s['done']}/{s['total']}  running {len(s['running'])}  pending {s['pending']}  "
           f"failed {len(s['failed'])} {s['failed'] or ''}  (updated {s['time'][11:]})")
-    group = "e1" if name == "e1" else name
     rows = []
     for r in s["running"][:60]:
-        mp = os.path.join(root, group, r, "metrics.jsonl")
+        hits = glob.glob(os.path.join(root, "*", r, "metrics.jsonl"))
+        mp = hits[0] if hits else ""
         try:
             last = json.loads(open(mp).read().strip().splitlines()[-1])
             rows.append(f"{r}:{last['step'] // 1000}k")
