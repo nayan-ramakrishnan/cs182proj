@@ -1,78 +1,226 @@
+"""E1 analysis: task-diversity threshold M* per optimizer and seed, plus the two clocks.
+
+  python analyze.py            # reads $RUNS_DIR/e1, writes $RUNS_DIR/analysis/
+
+M* readout (proposal): the smallest M at which Delta_ridge <= Delta_dMMSE at the end of training.
+We report it two ways, on seen-task prompts (primary) and on new-task prompts:
+  * grid:   the smallest grid M with Delta_ridge <= Delta_dMMSE
+  * interp: crossing of log(Delta_ridge / Delta_dMMSE) = 0, linear in log2 M between grid points
+A shift between optimizers "counts" only if it exceeds the spread across seeds.
+
+Clocks (for the race prediction of M*):
+  * t_icl: first eval step where new-task MSE is within --eps_icl of ridge's (learning clock)
+  * t_mem: first eval step where, on seen tasks, Delta_dMMSE / (Delta_dMMSE + Delta_ridge)
+           <= --r_mem (memorization clock)
+  Predicted M*: fit log t_mem = a + b log M over runs that memorize, take T_icl = median t_icl
+  of the largest-M runs, and solve t_mem(M) = T_icl.
 """
-Estimate M* per optimizer from E1 runs.
-
-Primary estimator (proposal): for each M, paired over seeds, take
-    delta(M) = Delta_ridge_new(bs=512) - Delta_ridge_new(bs=256).
-Below M*, more sequences per task push the model toward dMMSE (farther from ridge on new
-tasks): delta > 0. Above M*, toward ridge: delta < 0. M* = first + -> - crossing, linearly
-interpolated in log2 M. 95% CI by bootstrapping seeds.
-
-Single-run readout (for the controls): M where, on seen tasks, the model is equally far from
-dMMSE and ridge, i.e. log(d_ridge_seen / d_dmmse_seen) crosses 0 (it is >0 below M*: closer to dMMSE).
-
-  python analyze.py --runs runs [--opt adamw muon sgd]
-"""
-import argparse, glob, json
+import argparse
+import glob
+import json
+import math
+import os
 from collections import defaultdict
+
 import numpy as np
 
-
-def crossing(log2M, y):
-    """First sign change of y from >0 to <=0, interpolated; nan if none."""
-    for i in range(len(y) - 1):
-        if np.isfinite(y[i]) and np.isfinite(y[i + 1]) and y[i] > 0 >= y[i + 1]:
-            t = y[i] / (y[i] - y[i + 1])
-            return log2M[i] + t * (log2M[i + 1] - log2M[i])
-    return np.nan
+HERE = os.path.dirname(os.path.abspath(__file__))
+OPTS = ["sgd", "adamw", "muon"]
 
 
-def ci(samples):
-    s = np.array(samples, float)
-    s = s[np.isfinite(s)]
-    return (np.percentile(s, 2.5), np.percentile(s, 97.5), len(s)) if len(s) else (np.nan,) * 2 + (0,)
+def load(root):
+    runs = []
+    for fp in glob.glob(os.path.join(root, "e1", "*", "metrics.jsonl")):
+        d = os.path.dirname(fp)
+        if not os.path.exists(os.path.join(d, "final.json")):
+            continue
+        with open(os.path.join(d, "final.json")) as f:
+            fin = json.load(f)
+        with open(fp) as f:
+            curve = [json.loads(l) for l in f if l.strip()]
+        c = fin["config"]
+        runs.append({"opt": c["opt"], "M": c["M"], "l2": math.log2(c["M"]), "seed": c["seed"],
+                     "final": fin["final"], "refs": fin["refs"], "curve": curve, "diverged": fin["diverged"]})
+    return runs
+
+
+def mstar(l2s, dr, dd):
+    """Return (grid M* as log2, interpolated M* as log2) or None/inf-style strings."""
+    order = np.argsort(l2s)
+    l2s, g = np.asarray(l2s)[order], np.log(np.asarray(dr)[order] / np.asarray(dd)[order])
+    grid = next((l for l, gi in zip(l2s, g) if gi <= 0), None)
+    interp = None
+    for i in range(len(g) - 1):
+        if g[i] > 0 and g[i + 1] <= 0:
+            interp = l2s[i] + (l2s[i + 1] - l2s[i]) * g[i] / (g[i] - g[i + 1])
+            break
+    if interp is None and len(g):
+        interp = -math.inf if g[0] <= 0 else math.inf
+    return grid, interp
+
+
+def first_step(curve, cond):
+    return next((r["step"] for r in curve if r["step"] > 0 and cond(r)), None)
+
+
+def fmt(x):
+    if x is None:
+        return "-"
+    if isinstance(x, float) and math.isinf(x):
+        return "<grid" if x < 0 else ">grid"
+    return f"2^{x:.2f}"
 
 
 def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--runs", default="runs")
-    ap.add_argument("--opt", nargs="+", default=["adamw", "muon", "sgd"])
-    ap.add_argument("--boot", type=int, default=2000)
-    a = ap.parse_args()
+    p = argparse.ArgumentParser()
+    p.add_argument("--root", default=os.environ.get("RUNS_DIR", os.path.join(HERE, "runs")))
+    p.add_argument("--eps_icl", type=float, default=0.10)
+    p.add_argument("--r_mem", type=float, default=0.25)
+    a = p.parse_args()
+    out = os.path.join(a.root, "analysis")
+    os.makedirs(out, exist_ok=True)
+    runs = load(a.root)
+    if not runs:
+        raise SystemExit(f"no finished e1 runs under {a.root}/e1")
+    by = defaultdict(list)
+    for r in runs:
+        by[(r["opt"], r["seed"])].append(r)
 
-    R = {}  # (opt, M, bs, seed) -> final metrics
-    for f in glob.glob(f"{a.runs}/*/result.json"):
-        r = json.load(open(f)); c = r["config"]
-        R[(c["opt"], c["M"], c["bs"], c["seed"])] = r["final"]
+    # ---- M* per (opt, seed)
+    res = {}
+    for (opt, seed), rs in sorted(by.items()):
+        rs = [r for r in rs if not r["diverged"]]
+        entry = {"n_runs": len(rs)}
+        for split in ("seen", "new"):
+            g, i = mstar([r["l2"] for r in rs], [r["final"][f"d_ridge_{split}"] for r in rs],
+                         [r["final"][f"d_dmmse_{split}"] for r in rs])
+            entry[f"grid_{split}"], entry[f"interp_{split}"] = g, i
+        res[f"{opt}/s{seed}"] = entry
 
-    rng = np.random.default_rng(0)
-    for opt in a.opt:
-        Ms = sorted({k[1] for k in R if k[0] == opt and k[1] > 0})
-        seeds = sorted({k[3] for k in R if k[0] == opt})
-        # paired delta[s, m]; nan if either run is missing
-        delta = np.full((len(seeds), len(Ms)), np.nan)
-        ratio = np.full((len(seeds), len(Ms)), np.nan)
-        for si, s in enumerate(seeds):
-            for mi, M in enumerate(Ms):
-                lo, hi = R.get((opt, M, 256, s)), R.get((opt, M, 512, s))
-                if lo and hi:
-                    delta[si, mi] = hi["new"]["d_ridge"] - lo["new"]["d_ridge"]
-                if lo:
-                    ratio[si, mi] = np.log(lo["seen"]["d_ridge"] / lo["seen"]["d_dmmse"])
-        log2M = np.log2(Ms)
+    # ---- seed spread and pairwise comparison (seen-task, interpolated)
+    per_opt = defaultdict(list)
+    for key, e in res.items():
+        v = e["interp_seen"]
+        if v is not None and math.isfinite(v):
+            per_opt[key.split("/")[0]].append(v)
+    comp = []
+    opts = [o for o in OPTS if o in per_opt]
+    for i, o1 in enumerate(opts):
+        for o2 in opts[i + 1:]:
+            m1, m2 = np.mean(per_opt[o1]), np.mean(per_opt[o2])
+            spread = max(np.ptp(per_opt[o1]), np.ptp(per_opt[o2]))
+            comp.append({"pair": f"{o2} - {o1}", "delta_log2M": m2 - m1, "seed_spread_log2M": spread,
+                         "exceeds_seed_spread": bool(abs(m2 - m1) > spread)})
 
-        print(f"\n=== {opt}  ({len(seeds)} seeds) ===")
-        print(f"{'log2 M':>7} {'delta_ridge(512-256)':>22} {'log(dR/dD) seen@256':>21}")
-        for mi, M in enumerate(Ms):
-            print(f"{log2M[mi]:7.1f} {np.nanmean(delta[:, mi]):22.5f} {np.nanmean(ratio[:, mi]):21.3f}")
+    # ---- clocks
+    clocks = []
+    for r in runs:
+        if r["diverged"]:
+            continue
+        rr, cv = r["refs"], r["curve"]
+        t_icl = first_step(cv, lambda m: m["mse_new"] <= (1 + a.eps_icl) * rr["mse_ridge_new"])
+        t_mem = first_step(cv, lambda m: m["d_dmmse_seen"] / (m["d_dmmse_seen"] + m["d_ridge_seen"]) <= a.r_mem)
+        clocks.append({"opt": r["opt"], "M": r["M"], "l2": r["l2"], "seed": r["seed"], "t_icl": t_icl, "t_mem": t_mem})
+    pred = {}
+    for o in opts:
+        cs = [c for c in clocks if c["opt"] == o]
+        top = max(c["l2"] for c in cs)
+        ticl = [c["t_icl"] for c in cs if c["l2"] == top and c["t_icl"]]
+        mem = [c for c in cs if c["t_mem"]]
+        entry = {"T_icl": float(np.median(ticl)) if ticl else None, "n_mem_points": len(mem)}
+        if entry["T_icl"] and len({c["M"] for c in mem}) >= 2:
+            b, a0 = np.polyfit(np.log([c["M"] for c in mem]), np.log([c["t_mem"] for c in mem]), 1)
+            entry.update({"fit_slope": b, "fit_intercept": a0})
+            if b > 0:
+                entry["predicted_log2Mstar"] = (math.log(entry["T_icl"]) - a0) / b / math.log(2)
+        pred[o] = entry
 
-        for name, mat in [("M*  (batch-size sign change)", delta), ("M*  (equal-distance readout)", ratio)]:
-            point = crossing(log2M, np.nanmean(mat, 0))
-            boots = []
-            for _ in range(a.boot):
-                idx = rng.integers(0, len(seeds), len(seeds))
-                boots.append(crossing(log2M, np.nanmean(mat[idx], 0)))
-            lo, hi, n = ci(boots)
-            print(f"{name}: log2 M* = {point:.2f}  95% CI [{lo:.2f}, {hi:.2f}]  ({n}/{a.boot} boots with a crossing)")
+    # ---- write summary
+    summary = {"mstar": res, "comparisons": comp, "clocks": clocks, "race_prediction": pred,
+               "settings": vars(a)}
+    with open(os.path.join(out, "summary.json"), "w") as f:
+        json.dump(summary, f, indent=1, default=float)
+    lines = ["# E1 summary", "", "## M* (end of training)", "",
+             "| optimizer/seed | runs | seen: grid | seen: interp | new: grid | new: interp |",
+             "|---|---|---|---|---|---|"]
+    for k, e in res.items():
+        lines.append(f"| {k} | {e['n_runs']} | {fmt(e['grid_seen'])} | {fmt(e['interp_seen'])} | "
+                     f"{fmt(e['grid_new'])} | {fmt(e['interp_new'])} |")
+    lines += ["", "## Optimizer differences vs seed spread (seen tasks, log2 M)", "",
+              "| pair | delta | seed spread | exceeds? |", "|---|---|---|---|"]
+    for c in comp:
+        lines.append(f"| {c['pair']} | {c['delta_log2M']:+.2f} | {c['seed_spread_log2M']:.2f} | "
+                     f"{'yes' if c['exceeds_seed_spread'] else 'no'} |")
+    lines += ["", f"## Race prediction (eps_icl={a.eps_icl}, r_mem={a.r_mem})", "",
+              "| optimizer | T_icl | memorizing runs | slope | predicted M* | measured M* (mean) |",
+              "|---|---|---|---|---|---|"]
+    for o, e in pred.items():
+        meas = np.mean(per_opt[o]) if per_opt[o] else None
+        lines.append(f"| {o} | {e['T_icl']} | {e['n_mem_points']} | "
+                     f"{e.get('fit_slope', float('nan')):.2f} | {fmt(e.get('predicted_log2Mstar'))} | {fmt(meas)} |")
+    with open(os.path.join(out, "summary.md"), "w") as f:
+        f.write("\n".join(lines) + "\n")
+    print("\n".join(lines))
+
+    # ---- plots
+    try:
+        import matplotlib
+        matplotlib.use("Agg")
+        import matplotlib.pyplot as plt
+    except ImportError:
+        print("matplotlib missing; skipping plots")
+        return
+    colors = {"sgd": "C0", "adamw": "C1", "muon": "C2"}
+    fig, axes = plt.subplots(1, 2, figsize=(11, 4))
+    for ax, split in zip(axes, ("seen", "new")):
+        for r in runs:
+            if r["diverged"]:
+                continue
+            c, mk = colors[r["opt"]], "o" if r["seed"] == 0 else "s"
+            ax.scatter(r["l2"], r["final"][f"d_ridge_{split}"], color=c, marker=mk, facecolors="none")
+            ax.scatter(r["l2"], r["final"][f"d_dmmse_{split}"], color=c, marker=mk)
+        ax.set_yscale("log")
+        ax.set_xlabel("log2 M")
+        ax.set_title(f"{split} tasks: hollow = Δridge, filled = ΔdMMSE")
+    for o, c in colors.items():
+        axes[0].plot([], [], color=c, label=o)
+    axes[0].legend()
+    fig.tight_layout()
+    fig.savefig(os.path.join(out, "delta_vs_M.png"), dpi=130)
+
+    fig, axes = plt.subplots(1, len(opts), figsize=(5 * len(opts), 4), squeeze=False)
+    cmap = plt.get_cmap("viridis")
+    l2s = sorted({r["l2"] for r in runs})
+    for ax, o in zip(axes[0], opts):
+        for r in sorted((r for r in runs if r["opt"] == o and r["seed"] == 0), key=lambda r: r["l2"]):
+            cv = [m for m in r["curve"] if m["step"] > 0]
+            ratio = [m["d_dmmse_seen"] / (m["d_dmmse_seen"] + m["d_ridge_seen"]) for m in cv]
+            ax.plot([m["step"] for m in cv], ratio, color=cmap(l2s.index(r["l2"]) / max(1, len(l2s) - 1)),
+                    label=f"2^{r['l2']:g}")
+        ax.axhline(0.5, color="k", lw=0.5)
+        ax.set_xscale("log")
+        ax.set_ylim(0, 1)
+        ax.set_title(f"{o} (seed 0): ΔdMMSE/(ΔdMMSE+Δridge), seen")
+        ax.set_xlabel("step")
+    axes[0][0].legend(fontsize=7)
+    fig.tight_layout()
+    fig.savefig(os.path.join(out, "memorization_curves.png"), dpi=130)
+
+    fig, ax = plt.subplots(figsize=(5.5, 4))
+    for o in opts:
+        mem = [c for c in clocks if c["opt"] == o and c["t_mem"]]
+        ax.scatter([c["M"] for c in mem], [c["t_mem"] for c in mem], color=colors[o], label=f"{o} t_mem")
+        if pred[o]["T_icl"]:
+            ax.axhline(pred[o]["T_icl"], color=colors[o], ls="--", lw=1)
+    ax.set_xscale("log", base=2)
+    ax.set_yscale("log")
+    ax.set_xlabel("M")
+    ax.set_ylabel("steps")
+    ax.set_title("memorization clock vs M (dashed: T_icl)")
+    ax.legend()
+    fig.tight_layout()
+    fig.savefig(os.path.join(out, "clocks.png"), dpi=130)
+    print(f"plots and summary written to {out}")
 
 
 if __name__ == "__main__":

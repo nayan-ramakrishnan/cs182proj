@@ -1,0 +1,5 @@
+{
+ "adamw": {"lr": 1e-3, "wd": 1e-4, "note": "Adam LR commonly used in this testbed; wd 1e-4 == AdamW weight_decay 0.1 at lr 1e-3"},
+ "muon": {"lr": 2e-2, "wd": 1e-4, "note": "Muon reference default (Jordan et al.), momentum 0.95; Adam aux LR 1e-3"},
+ "sgd": {"lr": 3e-2, "wd": 1e-4, "note": "no literature default for this setup; untuned guess"}
+}
