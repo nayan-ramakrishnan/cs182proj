@@ -104,9 +104,10 @@ def main():
         if v is not None and math.isfinite(v):
             per_opt[key.split("/")[0]].append(v)
     comp = []
-    opts = [o for o in OPTS if o in per_opt]
-    for i, o1 in enumerate(opts):
-        for o2 in opts[i + 1:]:
+    opts = [o for o in OPTS if any(r["opt"] == o for r in runs)]
+    cmp_opts = [o for o in opts if per_opt[o]]
+    for i, o1 in enumerate(cmp_opts):
+        for o2 in cmp_opts[i + 1:]:
             m1, m2 = np.mean(per_opt[o1]), np.mean(per_opt[o2])
             spread = max(np.ptp(per_opt[o1]), np.ptp(per_opt[o2]))
             comp.append({"pair": f"{o2} - {o1}", "delta_log2M": m2 - m1, "seed_spread_log2M": spread,
@@ -146,6 +147,19 @@ def main():
     for k, e in res.items():
         lines.append(f"| {k} | {e['n_runs']} | {fmt(e['grid_seen'])} | {fmt(e['interp_seen'])} | "
                      f"{fmt(e['grid_new'])} | {fmt(e['interp_new'])} |")
+    # memorization ratio r = Delta_dMMSE / (Delta_dMMSE + Delta_ridge) at end of training, per M
+    # (r < 0.5: closer to dMMSE, i.e. memorizing; r > 0.5: closer to ridge)
+    l2_all = sorted({r["l2"] for r in runs})
+    lines += ["", "## End-of-training r = ΔdMMSE/(ΔdMMSE+Δridge) on seen tasks (mean over seeds; >0.5 = ridge-like)", "",
+              "| optimizer | " + " | ".join(f"2^{l:g}" for l in l2_all) + " |",
+              "|---|" + "---|" * len(l2_all)]
+    for o in opts:
+        cells = []
+        for l in l2_all:
+            vals = [r["final"]["d_dmmse_seen"] / (r["final"]["d_dmmse_seen"] + r["final"]["d_ridge_seen"])
+                    for r in runs if r["opt"] == o and r["l2"] == l and not r["diverged"]]
+            cells.append(f"{np.mean(vals):.2f}" if vals else "-")
+        lines.append(f"| {o} | " + " | ".join(cells) + " |")
     lines += ["", "## Optimizer differences vs seed spread (seen tasks, log2 M)", "",
               "| pair | delta | seed spread | exceeds? |", "|---|---|---|---|"]
     for c in comp:
@@ -206,6 +220,10 @@ def main():
     fig.tight_layout()
     fig.savefig(os.path.join(out, "memorization_curves.png"), dpi=130)
 
+    if not any(c["t_mem"] for c in clocks):
+        print("no run reached the memorization criterion; skipping clocks.png")
+        print(f"plots and summary written to {out}")
+        return
     fig, ax = plt.subplots(figsize=(5.5, 4))
     for o in opts:
         mem = [c for c in clocks if c["opt"] == o and c["t_mem"]]

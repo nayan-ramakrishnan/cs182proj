@@ -81,7 +81,7 @@ def cmd_e1(a):
     emit({"group": "e1", "name": f"{opt}_M2^{l2:g}_s{seed}",
           "args": {"opt": opt, "M": M_of(l2), "seed": seed, "lr": hp[opt]["lr"], "wd": hp[opt]["wd"],
                    "steps": a.steps}}
-         for opt in opts for seed in a.seeds for l2 in E1_LOG2M)
+         for opt in opts for seed in a.seeds for l2 in (a.log2m or E1_LOG2M))
 
 
 def main():
@@ -100,6 +100,7 @@ def main():
     e.add_argument("--opts", default=",".join(OPTS))
     e.add_argument("--seeds", type=int, nargs="+", default=[0, 1])
     e.add_argument("--steps", type=int, default=500_000)
+    e.add_argument("--log2m", type=float, nargs="+", default=None, help="override the M grid (log2 values)")
     a = p.parse_args()
     {"bench": cmd_bench, "sweep": cmd_sweep, "select": cmd_select, "e1": cmd_e1}[a.cmd](a)
 
