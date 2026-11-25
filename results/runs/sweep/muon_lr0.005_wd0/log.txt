@@ -1,0 +1,71 @@
+
+==== launch 10:36:57 gpu=2 attempt=1
+wandb: [wandb.login()] Loaded credentials for https://api.forge.coreweave.com from /home/ubuntu/.netrc.
+wandb: Currently logged in as: k5sko (cs182-proj) to https://api.forge.coreweave.com. Use `wandb login --relogin` to force relogin
+wandb: setting up run a69df29e87da9904
+wandb: Tracking run with wandb version 0.31.2
+wandb: Run data is saved locally in /lambda/nfs/cs182proj/cs182runs/sweep/muon_lr0.005_wd0/wandb/run-20261124_103717-a69df29e87da9904
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run muon_lr0.005_wd0
+wandb: ⭐️ View project at https://forge.coreweave.com/wandb/cs182-proj/cs182-icl-optimizers
+wandb: 🚀 View run at https://forge.coreweave.com/wandb/cs182-proj/cs182-icl-optimizers/runs/a69df29e87da9904
+run muon_lr0.005_wd0: opt=muon M=0 seed=0 lr=0.005 wd=0.0 params=202752 devices=[CudaDevice(id=0)]
+{"d_ridge_new": 0.64311, "mse_new": 1.02473, "step": 0, "train_loss": null, "steps_per_sec": null}
+{"d_ridge_new": 0.6425, "mse_new": 1.02427, "step": 100, "train_loss": 1.03593, "steps_per_sec": 6.37909}
+{"d_ridge_new": 0.6426, "mse_new": 1.0244, "step": 200, "train_loss": 1.02889, "steps_per_sec": 11.5142}
+{"d_ridge_new": 0.64201, "mse_new": 1.02378, "step": 300, "train_loss": 1.03589, "steps_per_sec": 15.74388}
+{"d_ridge_new": 0.63731, "mse_new": 1.01927, "step": 400, "train_loss": 1.03199, "steps_per_sec": 19.25602}
+{"d_ridge_new": 0.6225, "mse_new": 1.00467, "step": 500, "train_loss": 1.02387, "steps_per_sec": 22.27488}
+{"d_ridge_new": 0.56179, "mse_new": 0.94322, "step": 600, "train_loss": 0.9856, "steps_per_sec": 24.87568}
+{"d_ridge_new": 0.41253, "mse_new": 0.7905, "step": 700, "train_loss": 0.85301, "steps_per_sec": 27.08417}
+{"d_ridge_new": 0.23823, "mse_new": 0.61772, "step": 900, "train_loss": 0.71863, "steps_per_sec": 30.73372}
+{"d_ridge_new": 0.1181, "mse_new": 0.49545, "step": 1100, "train_loss": 0.55085, "steps_per_sec": 33.64068}
+{"d_ridge_new": 0.06577, "mse_new": 0.44505, "step": 1400, "train_loss": 0.46438, "steps_per_sec": 37.13551}
+{"d_ridge_new": 0.0527, "mse_new": 0.43248, "step": 1700, "train_loss": 0.43659, "steps_per_sec": 39.78848}
+{"d_ridge_new": 0.04398, "mse_new": 0.41971, "step": 2100, "train_loss": 0.42596, "steps_per_sec": 42.33298}
+{"d_ridge_new": 0.04291, "mse_new": 0.42009, "step": 2500, "train_loss": 0.42054, "steps_per_sec": 44.34608}
+{"d_ridge_new": 0.02982, "mse_new": 0.40523, "step": 3100, "train_loss": 0.4129, "steps_per_sec": 46.55932}
+{"d_ridge_new": 0.02476, "mse_new": 0.40186, "step": 3900, "train_loss": 0.40495, "steps_per_sec": 48.58265}
+{"d_ridge_new": 0.02469, "mse_new": 0.40159, "step": 4800, "train_loss": 0.40077, "steps_per_sec": 50.2469}
+{"d_ridge_new": 0.02228, "mse_new": 0.39881, "step": 5000, "train_loss": 0.39981, "steps_per_sec": 50.56572}
+{"d_ridge_new": 0.0201, "mse_new": 0.39586, "step": 5900, "train_loss": 0.39797, "steps_per_sec": 51.69119}
+{"d_ridge_new": 0.01743, "mse_new": 0.39344, "step": 7300, "train_loss": 0.39547, "steps_per_sec": 52.91054}
+{"d_ridge_new": 0.01691, "mse_new": 0.39351, "step": 9100, "train_loss": 0.39351, "steps_per_sec": 53.96671}
+{"d_ridge_new": 0.0155, "mse_new": 0.39125, "step": 10000, "train_loss": 0.39258, "steps_per_sec": 54.35982}
+{"d_ridge_new": 0.01482, "mse_new": 0.39201, "step": 11200, "train_loss": 0.39119, "steps_per_sec": 54.81643}
+{"d_ridge_new": 0.01256, "mse_new": 0.3888, "step": 13900, "train_loss": 0.38993, "steps_per_sec": 55.56704}
+{"d_ridge_new": 0.01207, "mse_new": 0.38849, "step": 15000, "train_loss": 0.38913, "steps_per_sec": 55.78038}
+{"d_ridge_new": 0.01184, "mse_new": 0.3883, "step": 17200, "train_loss": 0.38862, "steps_per_sec": 56.12911}
+{"d_ridge_new": 0.01073, "mse_new": 0.38667, "step": 20000, "train_loss": 0.38685, "steps_per_sec": 56.49264}
+{"d_ridge_new": 0.00988, "mse_new": 0.38663, "step": 21300, "train_loss": 0.38576, "steps_per_sec": 56.61769}
+{"d_ridge_new": 0.00825, "mse_new": 0.38472, "step": 25000, "train_loss": 0.38523, "steps_per_sec": 56.93534}
+{"d_ridge_new": 0.00821, "mse_new": 0.38433, "step": 26300, "train_loss": 0.38417, "steps_per_sec": 57.74537}
+{"d_ridge_new": 0.00683, "mse_new": 0.38283, "step": 30000, "train_loss": 0.38351, "steps_per_sec": 62.92428}
+{"d_ridge_new": 0.00561, "mse_new": 0.38191, "step": 32600, "train_loss": 0.38194, "steps_per_sec": 66.57712}
+{"d_ridge_new": 0.00528, "mse_new": 0.38119, "step": 35000, "train_loss": 0.38173, "steps_per_sec": 69.78549}
+{"d_ridge_new": 0.00392, "mse_new": 0.38021, "step": 40000, "train_loss": 0.38059, "steps_per_sec": 76.02589}
+{"d_ridge_new": 0.00385, "mse_new": 0.37989, "step": 40400, "train_loss": 0.38005, "steps_per_sec": 76.49945}
+{"d_ridge_new": 0.0032, "mse_new": 0.37964, "step": 45000, "train_loss": 0.37976, "steps_per_sec": 81.70702}
+{"d_ridge_new": 0.00295, "mse_new": 0.37932, "step": 50000, "train_loss": 0.37915, "steps_per_sec": 86.91808}
+wandb: updating run metadata
+wandb: uploading wandb-summary.json; uploading config.yaml
+wandb: 
+wandb: Run history:
+wandb:   d_ridge_new ██████▇▅▄▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       mse_new ██████▇▅▄▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb: steps_per_sec ▁▁▂▂▂▃▃▃▃▄▄▄▄▄▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▆▆▇▇▇██
+wandb:    train_loss █████▇▆▅▃▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb: 
+wandb: Run summary:
+wandb:       d_ridge_new 0.00295
+wandb:          diverged False
+wandb:           mse_new 0.37932
+wandb: ref/mse_ridge_new 0.37666
+wandb:     steps_per_sec 86.91808
+wandb:        train_loss 0.37915
+wandb: 
+wandb: 🚀 View run muon_lr0.005_wd0 at: https://forge.coreweave.com/wandb/cs182-proj/cs182-icl-optimizers/runs/a69df29e87da9904
+wandb: ⭐️ View project at: https://forge.coreweave.com/wandb/cs182-proj/cs182-icl-optimizers
+wandb: Synced 4 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./cs182runs/sweep/muon_lr0.005_wd0/wandb/run-20261124_103717-a69df29e87da9904/logs
+done: /lambda/nfs/cs182proj/cs182runs/sweep/muon_lr0.005_wd0 diverged=False

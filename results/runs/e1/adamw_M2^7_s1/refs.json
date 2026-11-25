@@ -1,0 +1,8 @@
+{
+ "mse_ridge_new": 0.3737614154815674,
+ "mse_dmmse_new": 0.8202182650566101,
+ "d_ridge_dmmse_new": 0.45012763142585754,
+ "mse_ridge_seen": 0.3785303235054016,
+ "mse_dmmse_seen": 0.20429717004299164,
+ "d_ridge_dmmse_seen": 0.17338106036186218
+}

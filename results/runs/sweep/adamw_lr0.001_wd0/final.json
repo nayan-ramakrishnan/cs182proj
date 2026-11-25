@@ -1,0 +1,37 @@
+{
+ "config": {
+  "opt": "adamw",
+  "M": 0,
+  "seed": 0,
+  "lr": 0.001,
+  "wd": 0.0,
+  "lr_aux": 0.001,
+  "steps": 50000,
+  "bs": 256,
+  "warmup_frac": 0.05,
+  "clip": 1.0,
+  "chunk": 100,
+  "eval_n": 2048,
+  "eval_every": 5000,
+  "n_log_evals": 30,
+  "ckpt_every": 25000,
+  "out": "/lambda/nfs/cs182proj/cs182runs/sweep/adamw_lr0.001_wd0",
+  "group": "sweep",
+  "name": "adamw_lr0.001_wd0",
+  "wandb": 1,
+  "stop_after": 0
+ },
+ "refs": {
+  "mse_ridge_new": 0.3766564130783081
+ },
+ "final": {
+  "d_ridge_new": 0.0035720765590667725,
+  "mse_new": 0.38039442896842957,
+  "step": 50000,
+  "train_loss": 0.3797215223312378,
+  "steps_per_sec": 117.59752564791513
+ },
+ "diverged": false,
+ "steps_done": 50000,
+ "n_params": 202752
+}

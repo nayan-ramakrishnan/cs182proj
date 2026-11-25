@@ -1,0 +1,146 @@
+
+==== launch 15:33:26 gpu=6 attempt=1
+wandb: [wandb.login()] Loaded credentials for https://api.forge.coreweave.com from /home/ubuntu/.netrc.
+wandb: Currently logged in as: k5sko (cs182-proj) to https://api.forge.coreweave.com. Use `wandb login --relogin` to force relogin
+wandb: setting up run 1300852ee9faa9c1
+wandb: Tracking run with wandb version 0.31.2
+wandb: Run data is saved locally in /lambda/nfs/cs182proj/cs182runs/e1/muon_M2^4_s1/wandb/run-20261124_153347-1300852ee9faa9c1
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run muon_M2^4_s1
+wandb: ⭐️ View project at https://forge.coreweave.com/wandb/cs182-proj/cs182-icl-optimizers
+wandb: 🚀 View run at https://forge.coreweave.com/wandb/cs182-proj/cs182-icl-optimizers/runs/1300852ee9faa9c1
+run muon_M2^4_s1: opt=muon M=16 seed=1 lr=0.005 wd=0.0001 params=202752 devices=[CudaDevice(id=0)]
+{"d_dmmse_new": 0.77619, "d_dmmse_seen": 1.02322, "d_ridge_new": 0.64775, "d_ridge_seen": 0.74886, "mse_new": 1.01855, "mse_seen": 1.18249, "step": 0, "train_loss": null, "steps_per_sec": null}
+{"d_dmmse_new": 0.77438, "d_dmmse_seen": 1.02094, "d_ridge_new": 0.64728, "d_ridge_seen": 0.74732, "mse_new": 1.01809, "mse_seen": 1.18022, "step": 100, "train_loss": 1.1652, "steps_per_sec": 5.70622}
+{"d_dmmse_new": 0.76999, "d_dmmse_seen": 1.01507, "d_ridge_new": 0.64674, "d_ridge_seen": 0.74356, "mse_new": 1.01748, "mse_seen": 1.1744, "step": 200, "train_loss": 1.16497, "steps_per_sec": 10.48193}
+{"d_dmmse_new": 0.76385, "d_dmmse_seen": 1.00615, "d_ridge_new": 0.64717, "d_ridge_seen": 0.73836, "mse_new": 1.01779, "mse_seen": 1.16558, "step": 300, "train_loss": 1.15131, "steps_per_sec": 14.45224}
+{"d_dmmse_new": 0.75689, "d_dmmse_seen": 0.99453, "d_ridge_new": 0.65126, "d_ridge_seen": 0.73311, "mse_new": 1.02169, "mse_seen": 1.15418, "step": 400, "train_loss": 1.14901, "steps_per_sec": 17.82236}
+{"d_dmmse_new": 0.75459, "d_dmmse_seen": 0.98564, "d_ridge_new": 0.66394, "d_ridge_seen": 0.73276, "mse_new": 1.03414, "mse_seen": 1.14569, "step": 500, "train_loss": 1.13563, "steps_per_sec": 20.7301}
+{"d_dmmse_new": 0.75524, "d_dmmse_seen": 0.98212, "d_ridge_new": 0.67047, "d_ridge_seen": 0.73234, "mse_new": 1.04073, "mse_seen": 1.14252, "step": 600, "train_loss": 1.13399, "steps_per_sec": 23.25702}
+{"d_dmmse_new": 0.75339, "d_dmmse_seen": 0.97999, "d_ridge_new": 0.67322, "d_ridge_seen": 0.73197, "mse_new": 1.04348, "mse_seen": 1.14037, "step": 700, "train_loss": 1.11607, "steps_per_sec": 25.51794}
+{"d_dmmse_new": 0.75454, "d_dmmse_seen": 0.97731, "d_ridge_new": 0.67591, "d_ridge_seen": 0.73104, "mse_new": 1.04656, "mse_seen": 1.13781, "step": 800, "train_loss": 1.12123, "steps_per_sec": 27.47722}
+{"d_dmmse_new": 0.75223, "d_dmmse_seen": 0.97005, "d_ridge_new": 0.67015, "d_ridge_seen": 0.72346, "mse_new": 1.04093, "mse_seen": 1.1304, "step": 900, "train_loss": 1.12087, "steps_per_sec": 29.217}
+{"d_dmmse_new": 0.74965, "d_dmmse_seen": 0.95326, "d_ridge_new": 0.66517, "d_ridge_seen": 0.71064, "mse_new": 1.03577, "mse_seen": 1.11343, "step": 1100, "train_loss": 1.10666, "steps_per_sec": 32.11439}
+{"d_dmmse_new": 0.74568, "d_dmmse_seen": 0.94099, "d_ridge_new": 0.66167, "d_ridge_seen": 0.70223, "mse_new": 1.0321, "mse_seen": 1.10104, "step": 1200, "train_loss": 1.09291, "steps_per_sec": 33.49962}
+{"d_dmmse_new": 0.73272, "d_dmmse_seen": 0.90245, "d_ridge_new": 0.64998, "d_ridge_seen": 0.67186, "mse_new": 1.01984, "mse_seen": 1.06267, "step": 1400, "train_loss": 1.07165, "steps_per_sec": 35.75122}
+{"d_dmmse_new": 0.68121, "d_dmmse_seen": 0.77715, "d_ridge_new": 0.60033, "d_ridge_seen": 0.56359, "mse_new": 0.96819, "mse_seen": 0.93663, "step": 1600, "train_loss": 0.99749, "steps_per_sec": 37.6974}
+{"d_dmmse_new": 0.62133, "d_dmmse_seen": 0.63886, "d_ridge_new": 0.49656, "d_ridge_seen": 0.43448, "mse_new": 0.86575, "mse_seen": 0.79882, "step": 1800, "train_loss": 0.83514, "steps_per_sec": 39.32171}
+{"d_dmmse_new": 0.58489, "d_dmmse_seen": 0.54105, "d_ridge_new": 0.44221, "d_ridge_seen": 0.35527, "mse_new": 0.81191, "mse_seen": 0.70124, "step": 2100, "train_loss": 0.73737, "steps_per_sec": 41.31717}
+{"d_dmmse_new": 0.56135, "d_dmmse_seen": 0.42553, "d_ridge_new": 0.38256, "d_ridge_seen": 0.27622, "mse_new": 0.75535, "mse_seen": 0.58608, "step": 2400, "train_loss": 0.63601, "steps_per_sec": 43.06578}
+{"d_dmmse_new": 0.53612, "d_dmmse_seen": 0.28366, "d_ridge_new": 0.29573, "d_ridge_seen": 0.18478, "mse_new": 0.66892, "mse_seen": 0.44402, "step": 2800, "train_loss": 0.50025, "steps_per_sec": 44.81714}
+{"d_dmmse_new": 0.50405, "d_dmmse_seen": 0.20033, "d_ridge_new": 0.28885, "d_ridge_seen": 0.15162, "mse_new": 0.66168, "mse_seen": 0.36034, "step": 3200, "train_loss": 0.39398, "steps_per_sec": 46.32477}
+{"d_dmmse_new": 0.46871, "d_dmmse_seen": 0.14708, "d_ridge_new": 0.32425, "d_ridge_seen": 0.16057, "mse_new": 0.69466, "mse_seen": 0.30728, "step": 3700, "train_loss": 0.32678, "steps_per_sec": 47.7896}
+{"d_dmmse_new": 0.42912, "d_dmmse_seen": 0.10726, "d_ridge_new": 0.35897, "d_ridge_seen": 0.17866, "mse_new": 0.72625, "mse_seen": 0.26808, "step": 4300, "train_loss": 0.28533, "steps_per_sec": 49.20691}
+{"d_dmmse_new": 0.39611, "d_dmmse_seen": 0.08316, "d_ridge_new": 0.3906, "d_ridge_seen": 0.19842, "mse_new": 0.75652, "mse_seen": 0.24249, "step": 5000, "train_loss": 0.2571, "steps_per_sec": 50.47739}
+{"d_dmmse_new": 0.37243, "d_dmmse_seen": 0.06139, "d_ridge_new": 0.43117, "d_ridge_seen": 0.21129, "mse_new": 0.79843, "mse_seen": 0.22054, "step": 5700, "train_loss": 0.23584, "steps_per_sec": 51.56331}
+{"d_dmmse_new": 0.36624, "d_dmmse_seen": 0.0456, "d_ridge_new": 0.50934, "d_ridge_seen": 0.22983, "mse_new": 0.87429, "mse_seen": 0.20574, "step": 6600, "train_loss": 0.21481, "steps_per_sec": 52.59411}
+{"d_dmmse_new": 0.40666, "d_dmmse_seen": 0.03125, "d_ridge_new": 0.58858, "d_ridge_seen": 0.23569, "mse_new": 0.95021, "mse_seen": 0.18942, "step": 7700, "train_loss": 0.19694, "steps_per_sec": 53.57691}
+{"d_dmmse_new": 0.44168, "d_dmmse_seen": 0.0243, "d_ridge_new": 0.62751, "d_ridge_seen": 0.23663, "mse_new": 0.99075, "mse_seen": 0.18133, "step": 8800, "train_loss": 0.18831, "steps_per_sec": 54.38105}
+{"d_dmmse_new": 0.40181, "d_dmmse_seen": 0.02423, "d_ridge_new": 0.63129, "d_ridge_seen": 0.23573, "mse_new": 0.99453, "mse_seen": 0.18372, "step": 10000, "train_loss": 0.18577, "steps_per_sec": 55.03102}
+{"d_dmmse_new": 0.42266, "d_dmmse_seen": 0.02516, "d_ridge_new": 0.63169, "d_ridge_seen": 0.24375, "mse_new": 0.99529, "mse_seen": 0.18359, "step": 10200, "train_loss": 0.18501, "steps_per_sec": 55.15109}
+{"d_dmmse_new": 0.44575, "d_dmmse_seen": 0.02304, "d_ridge_new": 0.64906, "d_ridge_seen": 0.24113, "mse_new": 1.01192, "mse_seen": 0.18098, "step": 11800, "train_loss": 0.18323, "steps_per_sec": 55.77378}
+{"d_dmmse_new": 0.45952, "d_dmmse_seen": 0.02125, "d_ridge_new": 0.64029, "d_ridge_seen": 0.25415, "mse_new": 1.00761, "mse_seen": 0.17956, "step": 13600, "train_loss": 0.18125, "steps_per_sec": 56.34389}
+{"d_dmmse_new": 0.43431, "d_dmmse_seen": 0.02164, "d_ridge_new": 0.63764, "d_ridge_seen": 0.24448, "mse_new": 0.99832, "mse_seen": 0.17991, "step": 15700, "train_loss": 0.18039, "steps_per_sec": 56.85214}
+{"d_dmmse_new": 0.4751, "d_dmmse_seen": 0.0205, "d_ridge_new": 0.65535, "d_ridge_seen": 0.24299, "mse_new": 1.02193, "mse_seen": 0.17781, "step": 18100, "train_loss": 0.18022, "steps_per_sec": 57.28741}
+{"d_dmmse_new": 0.47273, "d_dmmse_seen": 0.02152, "d_ridge_new": 0.66281, "d_ridge_seen": 0.24876, "mse_new": 1.02651, "mse_seen": 0.17962, "step": 20000, "train_loss": 0.18008, "steps_per_sec": 57.57514}
+{"d_dmmse_new": 0.43479, "d_dmmse_seen": 0.02059, "d_ridge_new": 0.63958, "d_ridge_seen": 0.24464, "mse_new": 1.00308, "mse_seen": 0.17959, "step": 20900, "train_loss": 0.18031, "steps_per_sec": 57.70483}
+{"d_dmmse_new": 0.46995, "d_dmmse_seen": 0.01867, "d_ridge_new": 0.64374, "d_ridge_seen": 0.25163, "mse_new": 1.01326, "mse_seen": 0.17711, "step": 24200, "train_loss": 0.17961, "steps_per_sec": 58.06052}
+{"d_dmmse_new": 0.45796, "d_dmmse_seen": 0.0184, "d_ridge_new": 0.64516, "d_ridge_seen": 0.24792, "mse_new": 1.01222, "mse_seen": 0.17686, "step": 27900, "train_loss": 0.17869, "steps_per_sec": 58.38048}
+{"d_dmmse_new": 0.47052, "d_dmmse_seen": 0.01833, "d_ridge_new": 0.66521, "d_ridge_seen": 0.24778, "mse_new": 1.02923, "mse_seen": 0.17428, "step": 30000, "train_loss": 0.17745, "steps_per_sec": 58.53575}
+{"d_dmmse_new": 0.47515, "d_dmmse_seen": 0.01529, "d_ridge_new": 0.67007, "d_ridge_seen": 0.25115, "mse_new": 1.03934, "mse_seen": 0.17243, "step": 32200, "train_loss": 0.17671, "steps_per_sec": 58.65219}
+{"d_dmmse_new": 0.4487, "d_dmmse_seen": 0.01863, "d_ridge_new": 0.64359, "d_ridge_seen": 0.24969, "mse_new": 1.00764, "mse_seen": 0.17775, "step": 37200, "train_loss": 0.17619, "steps_per_sec": 58.89126}
+{"d_dmmse_new": 0.46397, "d_dmmse_seen": 0.01511, "d_ridge_new": 0.63417, "d_ridge_seen": 0.25064, "mse_new": 0.99994, "mse_seen": 0.17351, "step": 40000, "train_loss": 0.17575, "steps_per_sec": 59.00382}
+{"d_dmmse_new": 0.43827, "d_dmmse_seen": 0.01273, "d_ridge_new": 0.61752, "d_ridge_seen": 0.25189, "mse_new": 0.98133, "mse_seen": 0.17124, "step": 43000, "train_loss": 0.17509, "steps_per_sec": 59.09168}
+{"d_dmmse_new": 0.45404, "d_dmmse_seen": 0.01415, "d_ridge_new": 0.64063, "d_ridge_seen": 0.25003, "mse_new": 1.00469, "mse_seen": 0.172, "step": 49700, "train_loss": 0.17481, "steps_per_sec": 59.27981}
+{"d_dmmse_new": 0.46271, "d_dmmse_seen": 0.01449, "d_ridge_new": 0.66249, "d_ridge_seen": 0.25379, "mse_new": 1.02764, "mse_seen": 0.17239, "step": 50000, "train_loss": 0.175, "steps_per_sec": 59.29723}
+{"d_dmmse_new": 0.44308, "d_dmmse_seen": 0.01509, "d_ridge_new": 0.63291, "d_ridge_seen": 0.24469, "mse_new": 0.99986, "mse_seen": 0.1733, "step": 57400, "train_loss": 0.17399, "steps_per_sec": 59.43484}
+{"d_dmmse_new": 0.45682, "d_dmmse_seen": 0.01365, "d_ridge_new": 0.64787, "d_ridge_seen": 0.24699, "mse_new": 1.01202, "mse_seen": 0.17087, "step": 60000, "train_loss": 0.17401, "steps_per_sec": 59.48206}
+{"d_dmmse_new": 0.46151, "d_dmmse_seen": 0.01634, "d_ridge_new": 0.67235, "d_ridge_seen": 0.24898, "mse_new": 1.03395, "mse_seen": 0.17405, "step": 66300, "train_loss": 0.17391, "steps_per_sec": 59.56974}
+{"d_dmmse_new": 0.45317, "d_dmmse_seen": 0.01312, "d_ridge_new": 0.64176, "d_ridge_seen": 0.24781, "mse_new": 1.00735, "mse_seen": 0.17218, "step": 70000, "train_loss": 0.1736, "steps_per_sec": 59.62639}
+{"d_dmmse_new": 0.46067, "d_dmmse_seen": 0.01139, "d_ridge_new": 0.64999, "d_ridge_seen": 0.25796, "mse_new": 1.01597, "mse_seen": 0.16896, "step": 76600, "train_loss": 0.17338, "steps_per_sec": 59.69717}
+{"d_dmmse_new": 0.45558, "d_dmmse_seen": 0.01262, "d_ridge_new": 0.66435, "d_ridge_seen": 0.25494, "mse_new": 1.03007, "mse_seen": 0.16991, "step": 80000, "train_loss": 0.17314, "steps_per_sec": 59.72885}
+{"d_dmmse_new": 0.44376, "d_dmmse_seen": 0.01223, "d_ridge_new": 0.67344, "d_ridge_seen": 0.25238, "mse_new": 1.03591, "mse_seen": 0.16975, "step": 88500, "train_loss": 0.17284, "steps_per_sec": 59.79453}
+{"d_dmmse_new": 0.44225, "d_dmmse_seen": 0.012, "d_ridge_new": 0.63575, "d_ridge_seen": 0.24976, "mse_new": 1.00374, "mse_seen": 0.17139, "step": 90000, "train_loss": 0.17282, "steps_per_sec": 59.8041}
+{"d_dmmse_new": 0.43636, "d_dmmse_seen": 0.01181, "d_ridge_new": 0.65099, "d_ridge_seen": 0.25488, "mse_new": 1.01514, "mse_seen": 0.17121, "step": 100000, "train_loss": 0.17245, "steps_per_sec": 59.87087}
+{"d_dmmse_new": 0.46087, "d_dmmse_seen": 0.01095, "d_ridge_new": 0.67398, "d_ridge_seen": 0.25307, "mse_new": 1.04099, "mse_seen": 0.1693, "step": 102200, "train_loss": 0.17257, "steps_per_sec": 59.87945}
+{"d_dmmse_new": 0.46014, "d_dmmse_seen": 0.01131, "d_ridge_new": 0.65839, "d_ridge_seen": 0.25136, "mse_new": 1.02157, "mse_seen": 0.17037, "step": 110000, "train_loss": 0.17246, "steps_per_sec": 59.92013}
+{"d_dmmse_new": 0.43303, "d_dmmse_seen": 0.0126, "d_ridge_new": 0.64627, "d_ridge_seen": 0.25372, "mse_new": 1.00899, "mse_seen": 0.17044, "step": 118100, "train_loss": 0.17228, "steps_per_sec": 59.95503}
+{"d_dmmse_new": 0.44793, "d_dmmse_seen": 0.0134, "d_ridge_new": 0.64758, "d_ridge_seen": 0.25088, "mse_new": 1.01157, "mse_seen": 0.17067, "step": 120000, "train_loss": 0.1721, "steps_per_sec": 59.96253}
+{"d_dmmse_new": 0.44545, "d_dmmse_seen": 0.01159, "d_ridge_new": 0.65489, "d_ridge_seen": 0.25701, "mse_new": 1.01931, "mse_seen": 0.1697, "step": 130000, "train_loss": 0.17207, "steps_per_sec": 60.00324}
+{"d_dmmse_new": 0.45074, "d_dmmse_seen": 0.01317, "d_ridge_new": 0.6345, "d_ridge_seen": 0.25179, "mse_new": 0.99924, "mse_seen": 0.17103, "step": 136400, "train_loss": 0.17202, "steps_per_sec": 60.02333}
+{"d_dmmse_new": 0.44846, "d_dmmse_seen": 0.01325, "d_ridge_new": 0.67282, "d_ridge_seen": 0.25402, "mse_new": 1.03684, "mse_seen": 0.1695, "step": 140000, "train_loss": 0.17181, "steps_per_sec": 60.03211}
+{"d_dmmse_new": 0.43952, "d_dmmse_seen": 0.01167, "d_ridge_new": 0.65966, "d_ridge_seen": 0.25184, "mse_new": 1.0273, "mse_seen": 0.17104, "step": 150000, "train_loss": 0.17157, "steps_per_sec": 60.0657}
+{"d_dmmse_new": 0.47418, "d_dmmse_seen": 0.01059, "d_ridge_new": 0.65014, "d_ridge_seen": 0.25278, "mse_new": 1.01621, "mse_seen": 0.16799, "step": 157600, "train_loss": 0.17151, "steps_per_sec": 60.0818}
+{"d_dmmse_new": 0.4773, "d_dmmse_seen": 0.01061, "d_ridge_new": 0.68094, "d_ridge_seen": 0.24644, "mse_new": 1.0435, "mse_seen": 0.16877, "step": 160000, "train_loss": 0.17115, "steps_per_sec": 60.08677}
+{"d_dmmse_new": 0.4541, "d_dmmse_seen": 0.01185, "d_ridge_new": 0.65009, "d_ridge_seen": 0.24863, "mse_new": 1.01389, "mse_seen": 0.16946, "step": 170000, "train_loss": 0.17113, "steps_per_sec": 60.11246}
+{"d_dmmse_new": 0.47235, "d_dmmse_seen": 0.01094, "d_ridge_new": 0.6951, "d_ridge_seen": 0.25018, "mse_new": 1.06118, "mse_seen": 0.17003, "step": 180000, "train_loss": 0.17083, "steps_per_sec": 60.13321}
+{"d_dmmse_new": 0.46707, "d_dmmse_seen": 0.01006, "d_ridge_new": 0.70167, "d_ridge_seen": 0.25186, "mse_new": 1.06393, "mse_seen": 0.16803, "step": 182100, "train_loss": 0.17077, "steps_per_sec": 60.13577}
+{"d_dmmse_new": 0.44779, "d_dmmse_seen": 0.01085, "d_ridge_new": 0.64669, "d_ridge_seen": 0.24951, "mse_new": 1.01174, "mse_seen": 0.16927, "step": 190000, "train_loss": 0.17041, "steps_per_sec": 60.1509}
+{"d_dmmse_new": 0.48421, "d_dmmse_seen": 0.0112, "d_ridge_new": 0.68929, "d_ridge_seen": 0.2531, "mse_new": 1.05392, "mse_seen": 0.16998, "step": 200000, "train_loss": 0.17038, "steps_per_sec": 60.16885}
+{"d_dmmse_new": 0.45122, "d_dmmse_seen": 0.00983, "d_ridge_new": 0.66006, "d_ridge_seen": 0.25487, "mse_new": 1.0245, "mse_seen": 0.16878, "step": 210000, "train_loss": 0.17011, "steps_per_sec": 60.18163}
+{"d_dmmse_new": 0.45766, "d_dmmse_seen": 0.01126, "d_ridge_new": 0.64887, "d_ridge_seen": 0.25408, "mse_new": 1.01413, "mse_seen": 0.17022, "step": 210300, "train_loss": 0.17031, "steps_per_sec": 60.18111}
+{"d_dmmse_new": 0.44379, "d_dmmse_seen": 0.00931, "d_ridge_new": 0.66561, "d_ridge_seen": 0.25506, "mse_new": 1.02976, "mse_seen": 0.1679, "step": 220000, "train_loss": 0.16976, "steps_per_sec": 60.19469}
+{"d_dmmse_new": 0.46268, "d_dmmse_seen": 0.00906, "d_ridge_new": 0.65201, "d_ridge_seen": 0.25455, "mse_new": 1.01817, "mse_seen": 0.1673, "step": 230000, "train_loss": 0.16946, "steps_per_sec": 60.20861}
+{"d_dmmse_new": 0.47994, "d_dmmse_seen": 0.00976, "d_ridge_new": 0.70978, "d_ridge_seen": 0.25807, "mse_new": 1.07667, "mse_seen": 0.17111, "step": 240000, "train_loss": 0.16915, "steps_per_sec": 60.22005}
+{"d_dmmse_new": 0.45891, "d_dmmse_seen": 0.00976, "d_ridge_new": 0.6712, "d_ridge_seen": 0.25947, "mse_new": 1.03361, "mse_seen": 0.16777, "step": 243000, "train_loss": 0.16917, "steps_per_sec": 60.22246}
+{"d_dmmse_new": 0.44238, "d_dmmse_seen": 0.00755, "d_ridge_new": 0.65261, "d_ridge_seen": 0.25729, "mse_new": 1.01813, "mse_seen": 0.1642, "step": 250000, "train_loss": 0.16872, "steps_per_sec": 60.35372}
+{"d_dmmse_new": 0.47361, "d_dmmse_seen": 0.00872, "d_ridge_new": 0.6757, "d_ridge_seen": 0.25382, "mse_new": 1.03898, "mse_seen": 0.16672, "step": 260000, "train_loss": 0.16843, "steps_per_sec": 61.14302}
+{"d_dmmse_new": 0.4478, "d_dmmse_seen": 0.0075, "d_ridge_new": 0.66633, "d_ridge_seen": 0.25617, "mse_new": 1.02762, "mse_seen": 0.16619, "step": 270000, "train_loss": 0.16808, "steps_per_sec": 61.89252}
+{"d_dmmse_new": 0.44179, "d_dmmse_seen": 0.00788, "d_ridge_new": 0.64899, "d_ridge_seen": 0.25565, "mse_new": 1.01297, "mse_seen": 0.16623, "step": 280000, "train_loss": 0.16778, "steps_per_sec": 62.60568}
+{"d_dmmse_new": 0.4577, "d_dmmse_seen": 0.00929, "d_ridge_new": 0.65164, "d_ridge_seen": 0.257, "mse_new": 1.0152, "mse_seen": 0.16678, "step": 280700, "train_loss": 0.16774, "steps_per_sec": 62.65379}
+{"d_dmmse_new": 0.45157, "d_dmmse_seen": 0.00822, "d_ridge_new": 0.67021, "d_ridge_seen": 0.25561, "mse_new": 1.03147, "mse_seen": 0.16603, "step": 290000, "train_loss": 0.16747, "steps_per_sec": 63.28447}
+{"d_dmmse_new": 0.45489, "d_dmmse_seen": 0.00712, "d_ridge_new": 0.67294, "d_ridge_seen": 0.25748, "mse_new": 1.03401, "mse_seen": 0.16446, "step": 300000, "train_loss": 0.16717, "steps_per_sec": 63.93302}
+{"d_dmmse_new": 0.46934, "d_dmmse_seen": 0.00665, "d_ridge_new": 0.66065, "d_ridge_seen": 0.25641, "mse_new": 1.02543, "mse_seen": 0.16629, "step": 310000, "train_loss": 0.1668, "steps_per_sec": 64.54969}
+{"d_dmmse_new": 0.47676, "d_dmmse_seen": 0.00654, "d_ridge_new": 0.67757, "d_ridge_seen": 0.25933, "mse_new": 1.04211, "mse_seen": 0.16347, "step": 320000, "train_loss": 0.16625, "steps_per_sec": 65.13993}
+{"d_dmmse_new": 0.46177, "d_dmmse_seen": 0.00561, "d_ridge_new": 0.68701, "d_ridge_seen": 0.25992, "mse_new": 1.04944, "mse_seen": 0.16402, "step": 324300, "train_loss": 0.16602, "steps_per_sec": 65.38534}
+{"d_dmmse_new": 0.45125, "d_dmmse_seen": 0.00602, "d_ridge_new": 0.65201, "d_ridge_seen": 0.25416, "mse_new": 1.01406, "mse_seen": 0.16317, "step": 330000, "train_loss": 0.16592, "steps_per_sec": 65.70364}
+{"d_dmmse_new": 0.46307, "d_dmmse_seen": 0.00563, "d_ridge_new": 0.66776, "d_ridge_seen": 0.25671, "mse_new": 1.0305, "mse_seen": 0.16351, "step": 340000, "train_loss": 0.16567, "steps_per_sec": 66.24334}
+{"d_dmmse_new": 0.45826, "d_dmmse_seen": 0.00604, "d_ridge_new": 0.67488, "d_ridge_seen": 0.25518, "mse_new": 1.03551, "mse_seen": 0.16346, "step": 350000, "train_loss": 0.16512, "steps_per_sec": 66.76155}
+{"d_dmmse_new": 0.4769, "d_dmmse_seen": 0.00531, "d_ridge_new": 0.67757, "d_ridge_seen": 0.25399, "mse_new": 1.0417, "mse_seen": 0.16438, "step": 360000, "train_loss": 0.16474, "steps_per_sec": 67.25728}
+{"d_dmmse_new": 0.47582, "d_dmmse_seen": 0.00421, "d_ridge_new": 0.68372, "d_ridge_seen": 0.26073, "mse_new": 1.0489, "mse_seen": 0.16223, "step": 370000, "train_loss": 0.16437, "steps_per_sec": 67.73301}
+{"d_dmmse_new": 0.47651, "d_dmmse_seen": 0.00444, "d_ridge_new": 0.68, "d_ridge_seen": 0.25824, "mse_new": 1.04582, "mse_seen": 0.16162, "step": 374700, "train_loss": 0.16414, "steps_per_sec": 67.95038}
+{"d_dmmse_new": 0.47619, "d_dmmse_seen": 0.00388, "d_ridge_new": 0.67353, "d_ridge_seen": 0.25772, "mse_new": 1.03863, "mse_seen": 0.16193, "step": 380000, "train_loss": 0.16356, "steps_per_sec": 68.19038}
+{"d_dmmse_new": 0.4704, "d_dmmse_seen": 0.0037, "d_ridge_new": 0.67234, "d_ridge_seen": 0.25845, "mse_new": 1.03426, "mse_seen": 0.16159, "step": 390000, "train_loss": 0.1635, "steps_per_sec": 68.62998}
+{"d_dmmse_new": 0.48656, "d_dmmse_seen": 0.003, "d_ridge_new": 0.6894, "d_ridge_seen": 0.25989, "mse_new": 1.05474, "mse_seen": 0.16172, "step": 400000, "train_loss": 0.16309, "steps_per_sec": 69.05388}
+{"d_dmmse_new": 0.48339, "d_dmmse_seen": 0.0026, "d_ridge_new": 0.68783, "d_ridge_seen": 0.26176, "mse_new": 1.05233, "mse_seen": 0.16062, "step": 410000, "train_loss": 0.16266, "steps_per_sec": 69.45983}
+{"d_dmmse_new": 0.48119, "d_dmmse_seen": 0.00221, "d_ridge_new": 0.69335, "d_ridge_seen": 0.25997, "mse_new": 1.0553, "mse_seen": 0.16107, "step": 420000, "train_loss": 0.16231, "steps_per_sec": 69.85178}
+{"d_dmmse_new": 0.49289, "d_dmmse_seen": 0.0021, "d_ridge_new": 0.70439, "d_ridge_seen": 0.26074, "mse_new": 1.06678, "mse_seen": 0.16122, "step": 430000, "train_loss": 0.16172, "steps_per_sec": 70.23019}
+{"d_dmmse_new": 0.47977, "d_dmmse_seen": 0.00176, "d_ridge_new": 0.67798, "d_ridge_seen": 0.25999, "mse_new": 1.04098, "mse_seen": 0.15992, "step": 432800, "train_loss": 0.16162, "steps_per_sec": 70.33334}
+{"d_dmmse_new": 0.48866, "d_dmmse_seen": 0.00171, "d_ridge_new": 0.68542, "d_ridge_seen": 0.26101, "mse_new": 1.04927, "mse_seen": 0.15977, "step": 440000, "train_loss": 0.16135, "steps_per_sec": 70.59422}
+{"d_dmmse_new": 0.49574, "d_dmmse_seen": 0.00124, "d_ridge_new": 0.68462, "d_ridge_seen": 0.26113, "mse_new": 1.04747, "mse_seen": 0.15975, "step": 450000, "train_loss": 0.16112, "steps_per_sec": 70.9468}
+{"d_dmmse_new": 0.49025, "d_dmmse_seen": 0.00094, "d_ridge_new": 0.68179, "d_ridge_seen": 0.26125, "mse_new": 1.04535, "mse_seen": 0.15905, "step": 460000, "train_loss": 0.16037, "steps_per_sec": 71.28595}
+{"d_dmmse_new": 0.48856, "d_dmmse_seen": 0.0007, "d_ridge_new": 0.68619, "d_ridge_seen": 0.26166, "mse_new": 1.04933, "mse_seen": 0.15883, "step": 470000, "train_loss": 0.16042, "steps_per_sec": 71.6144}
+{"d_dmmse_new": 0.48645, "d_dmmse_seen": 0.00043, "d_ridge_new": 0.68666, "d_ridge_seen": 0.26262, "mse_new": 1.04923, "mse_seen": 0.15851, "step": 480000, "train_loss": 0.16021, "steps_per_sec": 71.93209}
+{"d_dmmse_new": 0.48911, "d_dmmse_seen": 0.00036, "d_ridge_new": 0.68299, "d_ridge_seen": 0.26226, "mse_new": 1.04638, "mse_seen": 0.1584, "step": 490000, "train_loss": 0.16007, "steps_per_sec": 72.23948}
+{"d_dmmse_new": 0.48846, "d_dmmse_seen": 0.00032, "d_ridge_new": 0.68358, "d_ridge_seen": 0.26205, "mse_new": 1.04672, "mse_seen": 0.15851, "step": 500000, "train_loss": 0.15994, "steps_per_sec": 72.56617}
+wandb: updating run metadata
+wandb: uploading wandb-summary.json; uploading config.yaml
+wandb: 
+wandb: Run history:
+wandb:   d_dmmse_new █████▇▅▄▃▃▁▂▃▂▃▃▃▂▃▂▂▃▂▃▂▃▃▃▃▂▃▃▃▂▃▃▃▃▃▃
+wandb:  d_dmmse_seen █████▃▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:   d_ridge_new ▇▇▇██▁▁▃▅▇▇▇▇▇▇▇▇█▇█▇▇▇██▇▇▇▇██▇█▇██████
+wandb:  d_ridge_seen █████▇▆▁▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂
+wandb:       mse_new ▇▇███▁▂▃▅▆▇▇▇▇▇▇▇▇▇▇▇▇██▇▇█▇▇███▇███████
+wandb:      mse_seen ██████▇▆▅▅▃▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb: steps_per_sec ▁▂▃▃▄▄▅▆▆▆▆▆▆▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇████
+wandb:    train_loss ████▇▅▄▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb: 
+wandb: Run summary:
+wandb:            d_dmmse_new 0.48846
+wandb:           d_dmmse_seen 0.00032
+wandb:            d_ridge_new 0.68358
+wandb:           d_ridge_seen 0.26205
+wandb:               diverged False
+wandb:                mse_new 1.04672
+wandb:               mse_seen 0.15851
+wandb:  ref/d_ridge_dmmse_new 0.77411
+wandb: ref/d_ridge_dmmse_seen 0.26206
+wandb:      ref/mse_dmmse_new 1.13769
+wandb:                     +5 ...
+wandb: 
+wandb: 🚀 View run muon_M2^4_s1 at: https://forge.coreweave.com/wandb/cs182-proj/cs182-icl-optimizers/runs/1300852ee9faa9c1
+wandb: ⭐️ View project at: https://forge.coreweave.com/wandb/cs182-proj/cs182-icl-optimizers
+wandb: Synced 4 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./cs182runs/e1/muon_M2^4_s1/wandb/run-20261124_153347-1300852ee9faa9c1/logs
+done: /lambda/nfs/cs182proj/cs182runs/e1/muon_M2^4_s1 diverged=False

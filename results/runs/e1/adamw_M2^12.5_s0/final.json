@@ -1,0 +1,46 @@
+{
+ "config": {
+  "opt": "adamw",
+  "M": 5793,
+  "seed": 0,
+  "lr": 0.003,
+  "wd": 0.0,
+  "lr_aux": 0.001,
+  "steps": 500000,
+  "bs": 256,
+  "warmup_frac": 0.05,
+  "clip": 1.0,
+  "chunk": 100,
+  "eval_n": 2048,
+  "eval_every": 10000,
+  "n_log_evals": 60,
+  "ckpt_every": 50000,
+  "out": "/lambda/nfs/cs182proj/cs182runs/e1/adamw_M2^12.5_s0",
+  "group": "e1",
+  "name": "adamw_M2^12.5_s0",
+  "wandb": 1,
+  "stop_after": 0
+ },
+ "refs": {
+  "mse_ridge_new": 0.3766564130783081,
+  "mse_dmmse_new": 0.5334545373916626,
+  "d_ridge_dmmse_new": 0.15701089799404144,
+  "mse_ridge_seen": 0.37809431552886963,
+  "mse_dmmse_seen": 0.29556143283843994,
+  "d_ridge_dmmse_seen": 0.08429598063230515
+ },
+ "final": {
+  "d_dmmse_new": 0.15612635016441345,
+  "d_dmmse_seen": 0.08565925061702728,
+  "d_ridge_new": 0.002251285593956709,
+  "d_ridge_seen": 0.0021690353751182556,
+  "mse_new": 0.37877607345581055,
+  "mse_seen": 0.3793807625770569,
+  "step": 500000,
+  "train_loss": 0.379605233669281,
+  "steps_per_sec": 90.66829151007543
+ },
+ "diverged": false,
+ "steps_done": 500000,
+ "n_params": 202752
+}

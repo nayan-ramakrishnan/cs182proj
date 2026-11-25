@@ -1,0 +1,46 @@
+{
+ "config": {
+  "opt": "muon",
+  "M": 2896,
+  "seed": 1,
+  "lr": 0.005,
+  "wd": 0.0001,
+  "lr_aux": 0.001,
+  "steps": 500000,
+  "bs": 256,
+  "warmup_frac": 0.05,
+  "clip": 1.0,
+  "chunk": 100,
+  "eval_n": 2048,
+  "eval_every": 10000,
+  "n_log_evals": 60,
+  "ckpt_every": 50000,
+  "out": "/lambda/nfs/cs182proj/cs182runs/e1/muon_M2^11.5_s1",
+  "group": "e1",
+  "name": "muon_M2^11.5_s1",
+  "wandb": 1,
+  "stop_after": 0
+ },
+ "refs": {
+  "mse_ridge_new": 0.3737614154815674,
+  "mse_dmmse_new": 0.5699602365493774,
+  "d_ridge_dmmse_new": 0.19284704327583313,
+  "mse_ridge_seen": 0.38458648324012756,
+  "mse_dmmse_seen": 0.283829927444458,
+  "d_ridge_dmmse_seen": 0.09954926371574402
+ },
+ "final": {
+  "d_dmmse_new": 0.1901572048664093,
+  "d_dmmse_seen": 0.09937120974063873,
+  "d_ridge_new": 0.003683528397232294,
+  "d_ridge_seen": 0.0036630111280828714,
+  "mse_new": 0.37705183029174805,
+  "mse_seen": 0.38461625576019287,
+  "step": 500000,
+  "train_loss": 0.3778700828552246,
+  "steps_per_sec": 60.127683733667304
+ },
+ "diverged": false,
+ "steps_done": 500000,
+ "n_params": 202752
+}

@@ -1,0 +1,37 @@
+{
+ "config": {
+  "opt": "sgd",
+  "M": 0,
+  "seed": 0,
+  "lr": 0.03,
+  "wd": 0.0001,
+  "lr_aux": 0.001,
+  "steps": 50000,
+  "bs": 256,
+  "warmup_frac": 0.05,
+  "clip": 1.0,
+  "chunk": 100,
+  "eval_n": 2048,
+  "eval_every": 5000,
+  "n_log_evals": 30,
+  "ckpt_every": 25000,
+  "out": "/lambda/nfs/cs182proj/cs182runs/sweep/sgd_lr0.03_wd0.0001",
+  "group": "sweep",
+  "name": "sgd_lr0.03_wd0.0001",
+  "wandb": 1,
+  "stop_after": 0
+ },
+ "refs": {
+  "mse_ridge_new": 0.3766564130783081
+ },
+ "final": {
+  "d_ridge_new": 0.64256751537323,
+  "mse_new": 1.0242514610290527,
+  "step": 50000,
+  "train_loss": 1.0318098068237305,
+  "steps_per_sec": 109.38817831194426
+ },
+ "diverged": false,
+ "steps_done": 50000,
+ "n_params": 202752
+}

@@ -1,6 +1,6 @@
 __pycache__/
 *.pyc
-runs/
+/runs/
 wandb/
-jobs/
-hparams.json
+/jobs/
+/hparams.json

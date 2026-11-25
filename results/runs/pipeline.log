@@ -1,0 +1,196 @@
+[10:46:32] pipeline start (DROP_SGD=auto)
+[10:50:02] sweep: launching/finishing
+26 jobs, 26 already done, 0 to run on 8 x 4 slots
+all finished: 26 done, 0 failed []
+[10:50:03] selecting hyperparameters
+opt          lr      wd  excess MSE over ridge (new tasks)
+adamw    0.0003       0  0.0347
+adamw    0.0003  0.0001  0.0383
+adamw     0.001       0  0.0099
+adamw     0.001  0.0001  0.0097
+adamw     0.003       0  0.0093
+adamw     0.003  0.0001  0.0094
+adamw      0.01       0  1.6993
+adamw      0.01  0.0001  1.7184
+muon      0.005       0  0.0071
+muon      0.005  0.0001  0.0052
+muon       0.01       0  0.0072
+muon       0.01  0.0001  0.0070
+muon       0.02       0  0.0085
+muon       0.02  0.0001  0.0067
+muon       0.05       0  0.0169
+muon       0.05  0.0001  0.0115
+sgd       0.003       0  1.7193
+sgd       0.003  0.0001  1.7193
+sgd        0.01       0  1.7193
+sgd        0.01  0.0001  1.7193
+sgd        0.03       0  1.7193
+sgd        0.03  0.0001  1.7193
+sgd         0.1       0  1.7193
+sgd         0.1  0.0001  1.7193
+sgd         0.3       0  1.7193
+sgd         0.3  0.0001  1.7193
+
+selected: {
+ "sgd": {
+  "lr": 0.003,
+  "wd": 0.0,
+  "sweep_excess_over_ridge": 1.7193054361232338,
+  "reaches_ridge_level": false
+ },
+ "adamw": {
+  "lr": 0.003,
+  "wd": 0.0,
+  "sweep_excess_over_ridge": 0.009331097412571099,
+  "reaches_ridge_level": true
+ },
+ "muon": {
+  "lr": 0.005,
+  "wd": 0.0001,
+  "sweep_excess_over_ridge": 0.005180997859554726,
+  "reaches_ridge_level": true
+ }
+}
+written to /lambda/nfs/cs182proj/hparams.json
+[10:50:03] E1 optimizers: adamw,muon  (hparams from hparams.json)
+[10:50:03] E1: 36 runs
+36 jobs, 0 already done, 36 to run on 8 x 7 slots
+[12:21:57] done adamw_M2^12_s0 (1/36)
+[12:22:02] done adamw_M2^11.5_s1 (2/36)
+[12:22:17] done adamw_M2^11.5_s0 (3/36)
+[12:22:17] done adamw_M2^11_s1 (4/36)
+[12:22:22] done adamw_M2^13_s0 (5/36)
+[12:22:27] done adamw_M2^12.5_s0 (6/36)
+[12:22:27] done adamw_M2^12_s1 (7/36)
+[12:22:27] done adamw_M2^12.5_s1 (8/36)
+[12:46:29] done adamw_M2^11_s0 (9/36)
+[12:46:54] done adamw_M2^15_s0 (10/36)
+[12:47:14] done adamw_M2^10_s0 (11/36)
+[12:47:14] done adamw_M2^10_s1 (12/36)
+[12:47:14] done adamw_M2^15_s1 (13/36)
+[12:48:14] done adamw_M2^9_s1 (14/36)
+[12:48:29] done adamw_M2^10.5_s0 (15/36)
+[12:48:29] done adamw_M2^10.5_s1 (16/36)
+[12:48:54] done adamw_M2^9_s0 (17/36)
+[12:48:59] done adamw_M2^13_s1 (18/36)
+[13:08:24] done muon_M2^11_s0 (19/36)
+[13:08:24] done muon_M2^10.5_s1 (20/36)
+[13:08:45] done muon_M2^10_s1 (21/36)
+[13:09:00] done muon_M2^10.5_s0 (22/36)
+[13:09:10] done muon_M2^11.5_s0 (23/36)
+[13:09:10] done muon_M2^11.5_s1 (24/36)
+[13:09:15] done muon_M2^11_s1 (25/36)
+[13:09:25] done muon_M2^12_s0 (26/36)
+[13:34:51] done muon_M2^12.5_s0 (27/36)
+[13:35:22] done muon_M2^13_s0 (28/36)
+[13:35:22] done muon_M2^12_s1 (29/36)
+[13:35:22] done muon_M2^12.5_s1 (30/36)
+[13:56:55] done muon_M2^10_s0 (31/36)
+[13:56:55] done muon_M2^9_s1 (32/36)
+[13:57:16] done muon_M2^15_s1 (33/36)
+[13:59:06] done muon_M2^9_s0 (34/36)
+[13:59:06] done muon_M2^15_s0 (35/36)
+[13:59:06] done muon_M2^13_s1 (36/36)
+all finished: 36 done, 0 failed []
+[13:59:11] analysis
+# E1 summary
+
+## M* (end of training)
+
+| optimizer/seed | runs | seen: grid | seen: interp | new: grid | new: interp |
+|---|---|---|---|---|---|
+| adamw/s0 | 9 | 2^9.00 | <grid | 2^9.00 | <grid |
+| adamw/s1 | 9 | 2^9.00 | <grid | 2^9.00 | <grid |
+| muon/s0 | 9 | 2^9.00 | <grid | 2^9.00 | <grid |
+| muon/s1 | 9 | 2^9.00 | <grid | 2^9.00 | <grid |
+
+## Optimizer differences vs seed spread (seen tasks, log2 M)
+
+| pair | delta | seed spread | exceeds? |
+|---|---|---|---|
+
+## Race prediction (eps_icl=0.1, r_mem=0.25)
+
+| optimizer | T_icl | memorizing runs | slope | predicted M* | measured M* (mean) |
+|---|---|---|---|---|---|
+Traceback (most recent call last):
+  File "/lambda/nfs/cs182proj/analyze.py", line 227, in <module>
+    main()
+  File "/lambda/nfs/cs182proj/analyze.py", line 191, in main
+    fig, axes = plt.subplots(1, len(opts), figsize=(5 * len(opts), 4), squeeze=False)
+  File "/home/ubuntu/icl-venv/lib/python3.10/site-packages/matplotlib/pyplot.py", line 1777, in subplots
+    axs = fig.subplots(nrows=nrows, ncols=ncols, sharex=sharex, sharey=sharey,
+  File "/home/ubuntu/icl-venv/lib/python3.10/site-packages/matplotlib/figure.py", line 925, in subplots
+    gs = self.add_gridspec(nrows, ncols, figure=self, **gridspec_kw)
+  File "/home/ubuntu/icl-venv/lib/python3.10/site-packages/matplotlib/figure.py", line 1607, in add_gridspec
+    gs = GridSpec(nrows=nrows, ncols=ncols, figure=self, **kwargs)
+  File "/home/ubuntu/icl-venv/lib/python3.10/site-packages/matplotlib/gridspec.py", line 363, in __init__
+    super().__init__(nrows, ncols,
+  File "/home/ubuntu/icl-venv/lib/python3.10/site-packages/matplotlib/gridspec.py", line 51, in __init__
+    raise ValueError(
+ValueError: Number of columns must be a positive integer, not 0
+[13:59:13] analysis failed
+[15:33:25] E1-low: 28 runs (adamw,muon, M=2^3..2^8.5, hparams hparams.json)
+28 jobs, 0 already done, 28 to run on 8 x 4 slots
+[16:42:38] done adamw_M2^8.5_s0 (1/28)
+[16:42:48] done adamw_M2^3_s1 (2/28)
+[16:42:53] done adamw_M2^8_s0 (3/28)
+[16:43:03] done adamw_M2^8.5_s1 (4/28)
+[16:43:13] done adamw_M2^8_s1 (5/28)
+[16:43:54] done adamw_M2^7_s0 (6/28)
+[17:03:39] done muon_M2^3_s1 (7/28)
+[17:04:19] done muon_M2^8.5_s0 (8/28)
+[17:06:44] done adamw_M2^6_s1 (9/28)
+[17:06:49] done adamw_M2^5_s0 (10/28)
+[17:07:50] done adamw_M2^4_s1 (11/28)
+[17:08:55] done adamw_M2^3_s0 (12/28)
+[17:09:00] done adamw_M2^6_s0 (13/28)
+[17:09:00] done adamw_M2^7_s1 (14/28)
+[17:09:45] done adamw_M2^4_s0 (15/28)
+[17:09:55] done adamw_M2^5_s1 (16/28)
+[17:28:40] done muon_M2^3_s0 (17/28)
+[17:28:45] done muon_M2^4_s1 (18/28)
+[17:29:20] done muon_M2^4_s0 (19/28)
+[17:29:41] done muon_M2^5_s1 (20/28)
+[17:54:32] done muon_M2^7_s0 (21/28)
+[17:54:37] done muon_M2^8_s1 (22/28)
+[17:55:07] done muon_M2^8_s0 (23/28)
+[17:55:27] done muon_M2^8.5_s1 (24/28)
+[17:55:47] done muon_M2^5_s0 (25/28)
+[17:55:52] done muon_M2^6_s1 (26/28)
+[17:56:53] done muon_M2^7_s1 (27/28)
+[17:57:08] done muon_M2^6_s0 (28/28)
+all finished: 28 done, 0 failed []
+[17:57:13] analysis
+# E1 summary
+
+## M* (end of training)
+
+| optimizer/seed | runs | seen: grid | seen: interp | new: grid | new: interp |
+|---|---|---|---|---|---|
+| adamw/s0 | 16 | 2^7.00 | 2^6.82 | 2^5.00 | 2^4.70 |
+| adamw/s1 | 16 | 2^7.00 | 2^6.95 | 2^7.00 | 2^6.04 |
+| muon/s0 | 16 | 2^8.00 | 2^7.84 | 2^8.00 | 2^7.17 |
+| muon/s1 | 16 | 2^8.00 | 2^7.80 | 2^8.00 | 2^7.09 |
+
+## End-of-training r = ΔdMMSE/(ΔdMMSE+Δridge) on seen tasks (mean over seeds; >0.5 = ridge-like)
+
+| optimizer | 2^3 | 2^4 | 2^5 | 2^6 | 2^7 | 2^8 | 2^8.49985 | 2^9 | 2^10 | 2^10.4998 | 2^11 | 2^11.4998 | 2^12 | 2^12.5001 | 2^13 | 2^15 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| adamw | 0.00 | 0.00 | 0.00 | 0.08 | 0.58 | 0.73 | 0.80 | 0.86 | 0.93 | 0.94 | 0.95 | 0.97 | 0.97 | 0.97 | 0.97 | 0.97 |
+| muon | 0.00 | 0.00 | 0.00 | 0.02 | 0.13 | 0.60 | 0.67 | 0.73 | 0.89 | 0.92 | 0.95 | 0.96 | 0.97 | 0.97 | 0.97 | 0.97 |
+
+## Optimizer differences vs seed spread (seen tasks, log2 M)
+
+| pair | delta | seed spread | exceeds? |
+|---|---|---|---|
+| muon - adamw | +0.93 | 0.13 | yes |
+
+## Race prediction (eps_icl=0.1, r_mem=0.25)
+
+| optimizer | T_icl | memorizing runs | slope | predicted M* | measured M* (mean) |
+|---|---|---|---|---|---|
+| adamw | 8950.0 | 8 | 1.46 | 2^3.56 | 2^6.89 |
+| muon | 4300.0 | 10 | 1.64 | 2^3.67 | 2^7.82 |
+plots and summary written to /lambda/nfs/cs182proj/cs182runs/analysis
+[17:57:16] DONE: see /lambda/nfs/cs182proj/cs182runs/analysis/summary.md

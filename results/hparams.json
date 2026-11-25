@@ -1,0 +1,20 @@
+{
+ "sgd": {
+  "lr": 0.003,
+  "wd": 0.0,
+  "sweep_excess_over_ridge": 1.7193054361232338,
+  "reaches_ridge_level": false
+ },
+ "adamw": {
+  "lr": 0.003,
+  "wd": 0.0,
+  "sweep_excess_over_ridge": 0.009331097412571099,
+  "reaches_ridge_level": true
+ },
+ "muon": {
+  "lr": 0.005,
+  "wd": 0.0001,
+  "sweep_excess_over_ridge": 0.005180997859554726,
+  "reaches_ridge_level": true
+ }
+}
