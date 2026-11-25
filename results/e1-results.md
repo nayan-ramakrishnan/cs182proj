@@ -29,6 +29,17 @@ Muon - AdamW (seen tasks): +0.93 log2 M (Muon's M* is about 1.9x larger); seed s
 | adamw | 0.00 | 0.00 | 0.00 | 0.08 | 0.58 | 0.73 | 0.80 | 0.86 | 0.93 | 0.94 | 0.95 | 0.97 | 0.97 | 0.97 | 0.97 | 0.97 |
 | muon | 0.00 | 0.00 | 0.00 | 0.02 | 0.13 | 0.60 | 0.67 | 0.73 | 0.89 | 0.92 | 0.95 | 0.96 | 0.97 | 0.97 | 0.97 | 0.97 |
 
+## Robustness of the crossover to the threshold (seen tasks)
+log2 M where r first rises past the threshold (linear interpolation of r in log2 M), seeds 0, 1:
+
+| threshold | AdamW | Muon | gap (mean) |
+|---|---|---|---|
+| r = 0.25 (still mostly dMMSE-like) | 6.28, 6.40 | 7.27, 7.23 | 0.91 |
+| r = 0.50 (equidistant) | 6.78, 6.92 | 7.80, 7.76 | 0.93 |
+| r = 0.75 (mostly ridge-like) | 8.20, 8.08 | 9.16, 9.08 | 0.98 |
+
+The Muon-AdamW shift is about 0.9-1.0 log2 M at every threshold, against a seed spread of at most 0.14.
+
 ## Race prediction (eps_icl=0.1, r_mem=0.25)
 | opt | T_icl (steps) | memorizing runs | t_mem slope vs M | predicted M* | measured M* |
 |---|---|---|---|---|---|
