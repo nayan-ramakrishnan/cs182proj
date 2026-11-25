@@ -37,7 +37,7 @@ Muon - AdamW (seen tasks): +0.93 log2 M (Muon's M* is about 1.9x larger); seed s
 
 ## Takeaways / caveats
 - Ordering M*_AdamW < M*_Muon matches H1 (the SGD part of H1 is untested).
-- M* is about 2^7-2^8, far below Raventos's ~2^11.5; likely because this model is smaller (less capacity to memorize). Untested.
+- Not directly comparable to Raventos et al.'s threshold. Our model matches their "small PT" (4 layers, width 64, 2 heads; they report ~2^11.5 for it), but they define the threshold as the M where increasing batch size (256 -> 512) stops pushing the model toward dMMSE and starts pushing it toward ridge. We use the proposal's single-run readout (smallest M with Delta_ridge <= Delta_dMMSE). Training also differs (theirs: Adam, lr 1e-3, one-cycle schedule with 50% warmup; ours: per-optimizer tuned lr, 5% warmup + cosine). Their base model tracks dMMSE up to M of about 2^6, consistent in spirit with our ~2^7 crossover.
 - Muon learns ICL ~2x faster (T_icl) yet memorizes at larger M; the simple race model underpredicts M* by about 3-4 log2 units and gets the ordering only marginally.
 - Only 2 seeds.
 - Confound: Muon ran with weight decay 1e-4, AdamW with 0. Raventos et al. found weight decay lowers M* (for Adam). If that holds for Muon too, decay pushed Muon's M* down, so the measured gap would be understated rather than created by decay; untested. Clean control: Muon with wd 0 (or AdamW with wd 1e-4) at M = 2^6 ... 2^9, 2 seeds.
