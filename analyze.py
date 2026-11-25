@@ -160,6 +160,23 @@ def main():
                     for r in runs if r["opt"] == o and r["l2"] == l and not r["diverged"]]
             cells.append(f"{np.mean(vals):.2f}" if vals else "-")
         lines.append(f"| {o} | " + " | ".join(cells) + " |")
+    # robustness: log2 M where r first rises past each threshold (linear in log2 M), seen tasks
+    def r_cross(rs, t):
+        pts = sorted((r["l2"], r["final"]["d_dmmse_seen"] / (r["final"]["d_dmmse_seen"] + r["final"]["d_ridge_seen"]))
+                     for r in rs if not r["diverged"])
+        for (l0, r0), (l1, r1) in zip(pts, pts[1:]):
+            if r0 < t <= r1:
+                return l0 + (l1 - l0) * (t - r0) / (r1 - r0)
+        return None
+    seeds = sorted({r["seed"] for r in runs})
+    lines += ["", "## Crossover at other thresholds (seen tasks; log2 M where r first exceeds the threshold, per seed)", "",
+              "| threshold | " + " | ".join(opts) + " |", "|---|" + "---|" * len(opts)]
+    for t in (0.25, 0.5, 0.75):
+        cells = []
+        for o in opts:
+            vals = [r_cross([r for r in runs if r["opt"] == o and r["seed"] == s], t) for s in seeds]
+            cells.append(", ".join(f"{v:.2f}" if v is not None else "-" for v in vals))
+        lines.append(f"| r = {t} | " + " | ".join(cells) + " |")
     lines += ["", "## Optimizer differences vs seed spread (seen tasks, log2 M)", "",
               "| pair | delta | seed spread | exceeds? |", "|---|---|---|---|"]
     for c in comp:
